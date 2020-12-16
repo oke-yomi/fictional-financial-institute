@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
+    <!-- lightbox -->
+    <link rel="stylesheet" href="./css/lightbox.min.css">
 
     <!-- css style -->
     <link rel="stylesheet" href="./css/utilities.css">
@@ -16,7 +22,7 @@
 
 <body id="home">
     <header class="hero">
-        <div id="navbar" class="navbar">
+        <div id="navbar" class="navbar top">
             <h1 class="logo">
                 <span class="text-primary"><i class="fas fa-book-open"></i> Zeed</span>Ledger
             </h1>
@@ -99,21 +105,45 @@
 
             <div class="row">
                 <div class="column">
-                    <img src="./images/cases1.jpg" alt="">
-                    <img src="./images/cases2.jpg" alt="">
+                    <a href="./images/cases1.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases1.jpg" alt="">
+                    </a>
+
+                    <a href="./images/cases2.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases2.jpg" alt="">
+                    </a>
                 </div>
+
                 <div class="column">
-                    <img src="./images/cases3.jpg" alt="">
-                    <img src="./images/cases4.jpg" alt="">
+                    <a href="./images/cases3.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases3.jpg" alt="">
+                    </a>
+
+                    <a href="./images/cases4.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases4.jpg" alt="">
+                    </a>
                 </div>
+
                 <div class="column">
-                    <img src="./images/cases5.jpg" alt="">
-                    <img src="./images/cases6.jpg" alt="">
+                    <a href="./images/cases5.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases5.jpg" alt="">
+                    </a>
+
+                    <a href="./images/cases6.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases6.jpg" alt="">
+                    </a>
                 </div>
+
                 <div class="column">
-                    <img src="./images/cases7.jpg" alt="">
-                    <img src="./images/cases8.jpg" alt="">
+                    <a href="./images/cases7.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases7.jpg" alt="">
+                    </a>
+
+                    <a href="./images/cases8.jpg" data-lightbox="cases" data-title="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repudiandae, eligendi!">
+                        <img src="./images/cases8.jpg" alt="">
+                    </a>
                 </div>
+
             </div>
         </section>
 
@@ -213,7 +243,52 @@
         </div>
         <p>Copyright &copy; 2020 - ZeedLedger</p>
     </footer>
+
+    
 </body>
 
-</html>
+<!-- Jquery script -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 
+<!-- lightbox script -->
+<script src="./js/lightbox.min.js"></script>
+
+<!-- custom script -->
+<script>
+    const navbar = document.getElementById('navbar');
+    let scrolled = false;
+
+    window.onscroll = function() {
+        if(window.pageYOffset > 100) {
+            navbar.classList.remove('top');
+            if(!scrolled) {
+                navbar.style.transform = 'translateY(-70px)';
+            }
+            setTimeout(function() {
+                navbar.style.transform = 'translateY(0)';
+                scrolled = true;
+            }, 200)
+        } else {
+            navbar.classList.add('top');
+            scrolled = false;
+        }
+    }
+
+    // Smooth Scrolling
+    $('#navbar a, .btn').on('click', function (e) {
+        if (this.hash !== '') {
+            e.preventDefault();
+
+            const hash = this.hash;
+
+            $('html, body').animate (
+                {
+                    scrollTop: $(hash).offset().top - 100,
+                },
+                800
+            );
+        }
+    });
+</script>
+
+</html>
